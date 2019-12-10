@@ -1,0 +1,4 @@
+gcp_project = "some-name"
+gcp_region = "some-region"
+gke_username = ""
+gke_password = ""
