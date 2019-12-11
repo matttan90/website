@@ -41,3 +41,12 @@ module "k8s" {
   cluster_ca_certificate = module.gke.cluster_ca_certificate
   static_ip_address      = module.vpc.static_ip_address
 }
+
+module "dns" {
+  source = "./dns"
+
+  # pass main variables as specific module variables
+  gcp_project       = var.gcp_project
+  gcp_region        = var.gcp_region
+  static_ip_address = module.vpc.static_ip_address  
+}
