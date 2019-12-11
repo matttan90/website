@@ -1,12 +1,12 @@
 #--------------------------------------------------------------------------------------------------
-# K8s React Pods
+# K8s Flask Backend Pods
 #--------------------------------------------------------------------------------------------------
 
-resource "kubernetes_deployment" "react-frontend" {
+resource "kubernetes_deployment" "flask-backend" {
   metadata {
-    name = "react-frontend"
+    name = "flask-backend"
     labels = {
-      app = "react-frontend"
+      app = "flask-backend"
     }
   }
 
@@ -14,19 +14,19 @@ resource "kubernetes_deployment" "react-frontend" {
     replicas = 1
     selector {
       match_labels = {
-        app = "react-frontend"
+        app = "flask-backend"
       }
     }
     template {
       metadata {
         labels = {
-          app = "react-frontend"
+          app = "flask-backend"
         }
       }
       spec {
         container {
-          image = "gcr.io/host-website-261608/sample:prod"
-          name  = "react-frontend-container"
+          image = "gcr.io/host-website-261608/backend:latest"
+          name  = "flask-backend-container"
 
           resources {
             limits {
@@ -45,22 +45,20 @@ resource "kubernetes_deployment" "react-frontend" {
 }
 
 #--------------------------------------------------------------------------------------------------
-# K8s React Service
+# K8s Flask Backend Service
 #--------------------------------------------------------------------------------------------------
 
-resource "kubernetes_service" "react-frontend" {
+resource "kubernetes_service" "flask-backend" {
   metadata {
-    name = "react-frontend"
+    name = "flask-backend"
   }
   spec {
     selector = {
-      app = kubernetes_deployment.react-frontend.metadata.0.labels.app
+      app = kubernetes_deployment.flask-backend.metadata.0.labels.app
     }
     port {
-      port        = 80
-      target_port = 80
+      port        = 8000
+      target_port = 8000
     }
-    type = "LoadBalancer"
-    load_balancer_ip = var.static_ip_address
   }
 }

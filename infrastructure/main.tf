@@ -3,6 +3,7 @@
 #--------------------------------------------------------------------------------------------------
 variable "gcp_project" {}
 variable "gcp_region" {}
+variable "gcp_zone" {}
 variable "gke_username" {}
 variable "gke_password" {}
 
@@ -15,6 +16,7 @@ module "gke" {
   # pass main variables as specific module variables
   gcp_project  = var.gcp_project
   gcp_region   = var.gcp_region
+  gcp_zone     = var.gcp_zone
   gke_username = var.gke_username
   gke_password = var.gke_password
 }

@@ -1,0 +1,21 @@
+server {
+    listen       80;
+    server_name  localhost;
+
+    # current
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+
+    # backend
+    location /api/ {
+        # todo: parameterise the ip name
+        proxy_pass http://${BACKEND_IP}:${BACKEND_PORT};
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}

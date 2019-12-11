@@ -4,7 +4,7 @@
 
 resource "google_container_cluster" "primary" {
   name     = "primary-cluster"
-  location = var.gcp_region
+  location = var.gcp_zone
 
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default
@@ -23,9 +23,9 @@ resource "google_container_cluster" "primary" {
 
 resource "google_container_node_pool" "primary" {
   name       = "primary-node-pool"
-  location   = var.gcp_region
+  location   = var.gcp_zone
   cluster    = google_container_cluster.primary.name
-  node_count = 1
+  node_count = 3
 
   node_config {
     machine_type = "n1-standard-1"
