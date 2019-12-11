@@ -1,4 +1,5 @@
 gcp_project = "some-name"
 gcp_region = "some-region"
+gcp_zone = "some-region-b"
 gke_username = ""
 gke_password = ""
