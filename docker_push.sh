@@ -1,4 +1,4 @@
-# Frontend New
+# Frontend
 docker build -f ./app_frontend/Dockerfile -t frontend ./app_frontend
 docker tag frontend:latest gcr.io/host-website-261608/frontend:latest
 docker push gcr.io/host-website-261608/frontend:latest
