@@ -25,7 +25,8 @@ resource "kubernetes_deployment" "react-frontend" {
       }
       spec {
         container {
-          image = "gcr.io/host-website-261608/frontend:latest"
+          image = "gcr.io/${var.gcp_project}/frontend:latest"
+          image_pull_policy = "Always"
           name  = "react-frontend-container"
           env {
             name  = "BACKEND_IP"

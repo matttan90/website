@@ -10,9 +10,8 @@ This sub-repository declares the infrastructure used to host the production infr
 # Prerequisites
 
 ### Registered Domain
-- `matttan90.com` is registered with Google Domains
-- By default, it uses Google Domains nameservers, which will allow for terraforming google cloud dns records to resolve the domain name to the external static-ip.
-- Within the `dns` terraform module, `matttan90.com` is hardcoded as the `dns_name`.
+- `matttan90.com` is a registered
+- within the `dns` terraform module, `matttan90.com` is hardcoded as the `dns_name`
 
 ### GCP
 - create a GCP project within a GCP account
@@ -27,12 +26,16 @@ This sub-repository declares the infrastructure used to host the production infr
 ### Local Setup
 - install terraform CLI
 - set environment variable:
-    `export GOOGLE_CLOUD_KEYFILE_JSON=<path-to-service-account-credentials.json>`
+    - `export GOOGLE_CLOUD_KEYFILE_JSON=<path-to-service-account-credentials.json>`
+- create `terraform.tfvars` variable file to be used by terraform
+    - `cp terraform.tfvars.example terraform.tfvars`
+    - edit `terraform.tfvars` with actual parameters
 
 ---
 # Deployment
 
 To deploy the whole infrastructure, follow these steps:
 - ensure pwd is `/website/infrastructure`
-- run command `$terraform init`
-- run command `$terraform apply`
+- run command `$ terraform init`
+- run command `$ terraform apply`
+- ensure that domain registrar uses Cloud DNS nameservers

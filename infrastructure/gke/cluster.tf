@@ -16,7 +16,7 @@ resource "google_container_cluster" "primary" {
     username = var.gke_username
     password = var.gke_password
     client_certificate_config {
-      issue_client_certificate = false
+      issue_client_certificate = true
     }
   }
 }

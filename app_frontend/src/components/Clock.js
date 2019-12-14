@@ -1,6 +1,5 @@
 import React from 'react';
 import { Component } from 'react';
-import './App.css';
 import axios from 'axios';
 
 class MattTest extends Component {
@@ -25,6 +24,7 @@ class MattTest extends Component {
     })
     .catch(e => {
       // handle errors
+      console.log("hahahah")
       console.log(e);
       this.setState({
         name: 'acatach'
@@ -51,6 +51,7 @@ class MattTest extends Component {
 
   componentWillUnmount() {
     clearInterval(this.timerID);
+    clearInterval(this.apiID);
   }
 
   render() {

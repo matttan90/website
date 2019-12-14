@@ -1,10 +1,19 @@
+import datetime as dt
 import logging
-from flask import Flask, jsonify
+from flask import Flask, request, jsonify
 app = Flask(__name__)
 app.logger.setLevel(logging.INFO)
 
-@app.route('/api/')
-def hello():
-    app.logger.info('bye api called')
-    resp = {"name": "joshua"}
+@app.route('/api/comment', methods = ['POST'])
+def comment():
+    app.logger.info('Comment api called')
+    req_data = request.get_json()
+    app.logger.info(f"Text is: {req_data['text']}")
+
+    resp = {
+        "name": "Matt",
+        "age": 29,
+        "time": str(dt.datetime.now().time())
+    }
+    
     return jsonify(resp)

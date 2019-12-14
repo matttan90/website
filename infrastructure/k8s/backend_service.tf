@@ -25,7 +25,8 @@ resource "kubernetes_deployment" "flask-backend" {
       }
       spec {
         container {
-          image = "gcr.io/host-website-261608/backend:latest"
+          image = "gcr.io/${var.gcp_project}/backend:latest"
+          image_pull_policy = "Always"          
           name  = "flask-backend-container"
 
           resources {
