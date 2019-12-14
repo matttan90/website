@@ -33,9 +33,10 @@ module "k8s" {
   source   = "./k8s"
 
   # pass main variables and other module outputs as specific module variables
-  host     = module.gke.host
-  username = var.gke_username
-  password = var.gke_password
+  gcp_project            = var.gcp_project
+  host                   = module.gke.host
+  username               = var.gke_username
+  password               = var.gke_password
   client_certificate     = module.gke.client_certificate
   client_key             = module.gke.client_key
   cluster_ca_certificate = module.gke.cluster_ca_certificate

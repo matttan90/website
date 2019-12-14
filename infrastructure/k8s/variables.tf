@@ -2,6 +2,7 @@
 # /k8s Variables
 #--------------------------------------------------------------------------------------------------
 
+variable "gcp_project" {}
 variable "username" {}
 variable "password" {}
 variable "host" {}
