@@ -1,135 +1,218 @@
 import React from 'react'
 
-import Layout from '../layouts/layout'
-import Image from '../components/Image'
 import SEO from '../components/SEO'
+import Layout from '../layouts/layout'
+import Image from '../components/StaticQuery'
+import History from '../components/History'
 
-import { makeStyles } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
-import Divider from '@material-ui/core/Divider'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import Collapse from '@material-ui/core/Collapse'
 
-import StarIcon from '@material-ui/icons/Star'
-import InfoIcon from '@material-ui/icons/Info'
-import ExpandLess from '@material-ui/icons/ExpandLess'
-import ExpandMore from '@material-ui/icons/ExpandMore'
-import Done from '@material-ui/icons/Done'
+import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box'
+import Container from '@material-ui/core/Container'
+import Typography from '@material-ui/core/Typography'
+import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import CameraIcon from '@material-ui/icons/PhotoCamera';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
+import Toolbar from '@material-ui/core/Toolbar';
+import Link from '@material-ui/core/Link';
+import { Divider } from '@material-ui/core';
+import scrollTo from 'gatsby-plugin-smoothscroll';
 
+
+
+// section requires paddingtop to avoid fixed bar from ccovering it.
 const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%',
-    backgroundColor: theme.palette.background.paper,
+  icon: {
+    marginRight: theme.spacing(2),
   },
-  nested: {
-    paddingLeft: theme.spacing(4),
+  heroContent: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(8, 0, 6),
+  },
+  heroButtons: {
+    marginTop: theme.spacing(4),
+  },
+  section: {
+    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(8),
+    // paddingTop: 1000
+  },
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+  card: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  cardMedia: {
+    paddingTop: '56.25%', // 16:9
+  },
+  cardMedia2: {
+    paddingTop: '56.25%', // 16:9
+    paddingBottom: '12%', // 16:9
+  },
+  cardContent: {
+    flexGrow: 1,
+  },
+  footer: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(6),
   },
 }));
 
-const IndexPage = () => {
+const cards = [[1, "https://source.unsplash.com/random"],
+[2, "https://source.unsplash.com/random"],
+[3, "https://source.unsplash.com/random"]];
+// const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  const classes = useStyles()
-  const [features, setFeatures] = React.useState(true)
-  const [info, setInfo] = React.useState(true)
-
-  function handleClick(id) {
-    switch(id) {
-      case "features":
-        setFeatures(!features)
-        break;
-      case "info":
-        setInfo(!info)
-        break
-      default:
-        break
-    }
-  }
-
-  return(
-    <Layout>
-      <SEO title="Home" />
-      <Grid container spacing={3} justify="center">
-        <Grid item xs={2}>
-          <div style={{ maxWidth: `100px`, marginBottom: `1.45rem` }}>
-            <Image />
-          </div>
-        </Grid>
-        <Grid item xs={8}>
-          <h1>Gatsby Material UI Starter</h1>
-          <h5>
-            A responsive, minimalist Gatsby starter based on the world's most
-            popular React UI framework.
-          </h5>
-        </Grid>
-      </Grid>
-
-      <Divider />
-
-      <List
-        component="nav"
-        className={classes.root}
-      >
-
-      <ListItem id="features" button onClick={() => handleClick("features")}>
-        <ListItemIcon>
-          <StarIcon />
-        </ListItemIcon>
-        <ListItemText primary="Features" />
-        {features ? <ExpandLess /> : <ExpandMore />}
-      </ListItem>
-
-      <Collapse in={!features} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemIcon><Done /></ListItemIcon>
-            <ListItemText primary="Material UI Framework" />
-          </ListItem>
-          <ListItem button className={classes.nested}>
-            <ListItemIcon><Done /></ListItemIcon>
-            <ListItemText primary="Progressive Web App" />
-          </ListItem>
-          <ListItem button className={classes.nested}>
-            <ListItemIcon><Done /></ListItemIcon>
-            <ListItemText primary="SEO" />
-          </ListItem>
-          <ListItem button className={classes.nested}>
-            <ListItemIcon><Done /></ListItemIcon>
-            <ListItemText primary="Offline Support" />
-          </ListItem>
-          <ListItem button className={classes.nested}>
-            <ListItemIcon><Done /></ListItemIcon>
-            <ListItemText primary="Roboto Typeface (self hosted)" />
-          </ListItem>
-        </List>
-      </Collapse>
-
-      <ListItem button onClick={() => handleClick("info")}>
-        <ListItemIcon>
-          <InfoIcon />
-        </ListItemIcon>
-        <ListItemText primary="Info" />
-        {info ? <ExpandLess /> : <ExpandMore />}
-      </ListItem>
-
-      <Collapse in={!info} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemIcon><Done /></ListItemIcon>
-            <ListItemText primary="Based on Gatsby Default Starter" />
-          </ListItem>
-          <ListItem button className={classes.nested}>
-            <ListItemIcon><Done /></ListItemIcon>
-            <ListItemText primary="Uses Gatsby Material UI Plugin" />
-          </ListItem>
-        </List>
-      </Collapse>
-
-    </List>
-    </Layout>
+function Section(props) {
+  const { id, children } = props;
+  const classes = useStyles();
+  return (
+    <React.Fragment>
+      <Box id={id} component='section' >
+        <Divider className={classes.section} />
+        {children}
+      </Box>
+    </React.Fragment>
   )
 }
 
-export default IndexPage;
+
+function AboutMePage() {
+  const classes = useStyles();
+  return (
+    <Layout>
+      <SEO title='About Me' />
+
+      <Section id='aboutme'>
+        <Container maxWidth='xs'>
+          <Typography variant="h4" align="center" >About Me</Typography>
+          <Box marginTop={2} />
+          <Image filename="matt.png" />
+        </Container>
+      </Section>
+
+      <Section id='journey'>
+        <Typography>Journey Start</Typography>
+        <Typography>Journey Mid</Typography>
+        <History />
+        <Typography>Journey End</Typography>
+      </Section>
+
+
+
+
+      <Container className={classes.cardGrid} maxWidth="md">
+        <Grid container spacing={4}>
+          <Grid item key={1} xs={12} sm={6} md={4}>
+            <Card className={classes.card}>
+              {/* <CardMedia className={classes.cardMedia}> */}
+              <Image filename="matt.png" />
+              {/* </ CardMedia > */}
+
+              <CardContent className={classes.cardContent}>
+                <Typography gutterBottom variant="h5" component="h2">
+                  Heading
+                    </Typography>
+                <Typography>
+                  This is a media card. You can use this section to describe the content.
+                    </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+
+
+
+          {cards.map(card => (
+            <Grid item key={card[0]} xs={12} sm={6} md={4}>
+              <Card className={classes.card}>
+                <CardMedia
+                  className={classes.cardMedia2}
+                  image={card[1]}
+                  title="Image title"
+                />
+                <CardContent className={classes.cardContent}>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    Heading
+                    </Typography>
+                  <Typography>
+                    This is a media card. You can use this section to describe the content.
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button size="small" color="primary">
+                    View
+                    </Button>
+                  <Button size="small" color="primary">
+                    Edit
+                    </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+
+        </Grid>
+
+      </Container>
+
+      <Container maxWidth='xs'>
+        <Typography variant="h4" align="center" >About Me</Typography>
+        <Box marginTop={2} />
+        <Image filename="matt.png" />
+      </Container>
+
+
+      <Container maxWidth='xs'>
+        <Typography variant="h4" align="center" >About Me</Typography>
+        <Box marginTop={2} />
+        <Image filename="matt.png" />
+      </Container>
+
+      <Container maxWidth='xs'>
+        <Typography variant="h4" align="center" >About Me</Typography>
+        <Box marginTop={2} />
+        <Image filename="matt.png" />
+      </Container>
+
+      <Container id='someid' maxWidth='xs'>
+        <Typography variant="h4" align="center" >Real Test</Typography>
+        <Box marginTop={2} />
+        <Image filename="matt.png" />
+      </Container>
+
+
+      <Container maxWidth='xs'>
+        <Typography variant="h4" align="center" >About Me</Typography>
+        <Box marginTop={2} />
+        <Image filename="matt.png" />
+      </Container>
+
+
+      <Container maxWidth='xs'>
+        <Typography variant="h4" align="center" >About Me</Typography>
+        <Box marginTop={2} />
+        <Image filename="matt.png" />
+      </Container>
+
+
+      <Container maxWidth='xs'>
+        <Typography variant="h4" align="center" >About Me</Typography>
+        <Box marginTop={2} />
+        <Image filename="matt.png" />
+      </Container>
+
+
+
+    </Layout>
+  )
+}
+export default AboutMePage

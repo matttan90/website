@@ -1,29 +1,33 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 
-import { Link } from 'gatsby'
-
+import PropTypes from 'prop-types'
 import clsx from 'clsx'
+import scrollTo from 'gatsby-plugin-smoothscroll';
+
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-import Drawer from '@material-ui/core/Drawer'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Box from '@material-ui/core/Box'
+import Drawer from '@material-ui/core/Drawer'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import List from '@material-ui/core/List'
-import Typography from '@material-ui/core/Typography'
-import Divider from '@material-ui/core/Divider'
 import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider'
+
+import MenuIcon from '@material-ui/icons/Menu'
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import HomeIcon from '@material-ui/icons/Home'
 import ListIcon from '@material-ui/icons/ViewList'
+import LinkedInIcon from '@material-ui/icons/LinkedIn'
+import GitHubIcon from '@material-ui/icons/GitHub'
 
 const drawerWidth = 240
-
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -33,7 +37,8 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    background: '#24716d',
+    background: 'white',
+    // marginBottom: 500,
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -43,8 +48,12 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
+  appBarText: {
+    color: '#24716d'
+  },
   menuButton: {
     marginRight: theme.spacing(2),
+    color: '#24716d'
   },
   hide: {
     display: 'none',
@@ -79,108 +88,142 @@ const useStyles = makeStyles(theme => ({
     }),
     marginLeft: 0,
   },
+  listItemLink: {
+    color: '#24716d'
+  }
 }))
 
-const Header = ({ siteTitle }) => {
-  const classes = useStyles()
 
-  const theme = useTheme()
-  const [open, setOpen] = React.useState(false)
+function Header({ siteTitle }) {
+  const classes = useStyles();
+  const theme = useTheme();
 
-  function handleDrawerOpen() {
-    setOpen(true)
+  // State
+  const [isDrawerOpen, setDrawerState] = React.useState(false)
+  function setDrawerOpen() {
+    setDrawerState(true);
   }
-
-  function handleDrawerClose() {
-    setOpen(false)
+  function setDrawerClose() {
+    setDrawerState(false);
   }
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        elevation={0}
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
+    <ClickAwayListener onClickAway={setDrawerClose}>
+      <Box component='header' className={classes.root} >
+        <CssBaseline />
+        <AppBar
+          position='fixed'
+          elevation={0}
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: isDrawerOpen,
+          })}
+        >
+          <Toolbar>
+            <IconButton
+              aria-label='Open drawer'
+              onClick={setDrawerOpen}
+              edge='start'
+              className={clsx(classes.menuButton, isDrawerOpen && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography className={classes.appBarText} variant='h5'>
+              i'm {siteTitle}
+            </Typography>
+          </Toolbar>
+          <Divider />
+        </AppBar>
 
-          {/* First element in toolbar */}
-          <IconButton
-            color="inherit"
-            aria-label="Open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
+        <Drawer
+          className={classes.drawer}
+          variant='persistent'
+          anchor='left'
+          open={isDrawerOpen}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <Box component='nav' className={classes.drawerHeader}>
+            <IconButton onClick={setDrawerClose}>
+              {theme.direction === 'ltr' ? (
+                <ChevronLeftIcon />
+              ) : (
+                  <ChevronRightIcon />
+                )}
+            </IconButton>
+          </Box>
 
-          {/* Second element in toolbar */}
-          <Typography variant="h6" color="inherit">
-            {siteTitle}
-          </Typography>
+          <Divider />
 
-        </Toolbar>
-      </AppBar>]
+          <List>
+            <ListItem button
+              className={classes.listItemLink}
+              onClick={() => {
+                scrollTo('#aboutme');
+                setDrawerClose();
+              }}
+            >
+              <ListItemIcon><HomeIcon /></ListItemIcon>
+              <ListItemText primary='Matt' />
+            </ListItem>
 
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
+            <ListItem button
+              className={classes.listItemLink}
+              onClick={() => {
+                scrollTo('#journey');
+                setDrawerClose();
+              }}
+            >
+              <ListItemIcon><ListIcon /></ListItemIcon>
+              <ListItemText primary='My Journey' />
+            </ListItem>
 
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? (
-              <ChevronLeftIcon />
-            ) : (
-                <ChevronRightIcon />
-              )}
-          </IconButton>
-        </div>
+            <ListItem button
+              className={classes.listItemLink}
+              onClick={() => {
+                scrollTo('#someid');
+                setDrawerClose();
+              }}
+            >
+              <ListItemIcon><ListIcon /></ListItemIcon>
+              <ListItemText primary='testbelow' />
+            </ListItem>
 
-        <Divider />
+            <ListItem button
+              component='a'
+              href="https://github.com/matttan90/"
+              className={classes.listItemLink}
+              onClick={setDrawerClose}
+            >
+              <ListItemIcon><GitHubIcon /></ListItemIcon>
+              <ListItemText primary='Github' />
+            </ListItem>
 
-        <List>
-          {/* First element in list */}
-          <ListItem button>
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText>
-              <Link to="/">Home</Link>
-            </ListItemText>
-          </ListItem>
+            <ListItem button
+              component='a'
+              href='https://www.linkedin.com/in/matthew-tan-98713077/'
+              className={classes.listItemLink}
+              onClick={setDrawerClose}
+            >
+              <ListItemIcon><LinkedInIcon /></ListItemIcon>
+              <ListItemText primary='LinkedIn' />
+            </ListItem>
+          </List>
 
-          {/* Second element in list */}
-          <ListItem button>
-            <ListItemIcon>
-              <ListIcon />
-            </ListItemIcon>
-            <ListItemText>
-              <Link to="/comment">Comment</Link>
-            </ListItemText>
-          </ListItem>
+        </Drawer>
 
-        </List>
-      </Drawer>
-    </div>
+      </Box>
+    </ClickAwayListener>
   )
 }
+
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
 }
 
 Header.defaultProps = {
-  siteTitle: ``,
+  siteTitle: '',
 }
 
 export default Header

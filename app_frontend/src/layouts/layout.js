@@ -10,7 +10,10 @@ import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 
 import Header from '../components/Header'
-import './layout.css'
+import Footer from '../components/Footer'
+
+import Box from '@material-ui/core/Box'
+import Container from '@material-ui/core/Container'
 
 const Layout = ({ children }) => {
   return (
@@ -25,25 +28,15 @@ const Layout = ({ children }) => {
         }
       `}
       render={data => (
-          <div>
-          {/* <div style={{ minHeight: '100vh', backgroundColor: '#FFF' }}> */}
+        <React.Fragment>
           <Header siteTitle={data.site.siteMetadata.title} />
-          <div
-            style={{
-              margin: `0 auto`,
-              maxWidth: 960,
-              padding: `0px 1.0875rem 1.45rem`,
-              paddingTop: 100,
-            }}
-          >
-            <main>{children}</main>
-            <footer style={{ paddingTop: 10 }}>
-              © {new Date().getFullYear()}, Built with
-              {` `}
-              <a href="https://www.gatsbyjs.org">Gatsby</a>
-            </footer>
-          </div>
-        </div>
+          <Box component='main' marginTop={10}>
+            <Container maxWidth='lg'>
+              {children}
+              <Footer />
+            </Container>
+          </Box>
+        </React.Fragment>
       )}
     />
   )

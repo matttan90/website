@@ -1,10 +1,10 @@
 # build environment
-FROM node:12.3.0-alpine as build
+FROM node:12.13.0-alpine as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 ENV GATSBY_TELEMETRY_DISABLED 1
 COPY package.json /app/package.json
-RUN npm install --silent
+RUN npm install npm@latest -g && npm install --silent
 COPY . /app
 RUN gatsby build
 
