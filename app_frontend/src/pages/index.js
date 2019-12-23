@@ -39,9 +39,9 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(4),
   },
   section: {
-    marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(8),
-    // paddingTop: 1000
+    marginTop: -theme.spacing(10),
+    paddingTop: theme.spacing(10),
+    marginBottom: theme.spacing(4)
   },
   cardGrid: {
     paddingTop: theme.spacing(8),
@@ -78,8 +78,7 @@ function Section(props) {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Box id={id} component='section' >
-        <Divider className={classes.section} />
+      <Box id={id} component='section' className={classes.section}>
         {children}
       </Box>
     </React.Fragment>
