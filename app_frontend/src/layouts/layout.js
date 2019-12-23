@@ -12,10 +12,19 @@ import { StaticQuery, graphql } from 'gatsby'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
-import Box from '@material-ui/core/Box'
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container'
 
+
+const useStyles = makeStyles(theme => ({
+  main: {
+    marginTop: theme.spacing(10),
+  },
+}));
+
+
 const Layout = ({ children }) => {
+  const classes = useStyles();
   return (
     <StaticQuery
       query={graphql`
@@ -30,12 +39,10 @@ const Layout = ({ children }) => {
       render={data => (
         <React.Fragment>
           <Header siteTitle={data.site.siteMetadata.title} />
-          <Box component='main' marginTop={10}>
-            <Container maxWidth='lg'>
-              {children}
-              <Footer />
-            </Container>
-          </Box>
+          <Container component='main' maxWidth='lg' className={classes.main}>
+            {children}
+          </Container>
+          <Footer />
         </React.Fragment>
       )}
     />

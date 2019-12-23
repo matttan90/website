@@ -38,7 +38,6 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     background: 'white',
-    // marginBottom: 500,
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
