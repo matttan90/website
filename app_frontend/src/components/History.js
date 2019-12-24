@@ -1,60 +1,67 @@
-import React from 'react'
-
-import { makeStyles } from '@material-ui/core/styles'
-import Box from '@material-ui/core/Box'
-import Button from '@material-ui/core/Button'
-import Divider from '@material-ui/core/Divider'
-import Typography from '@material-ui/core/Typography'
-import Grid from '@material-ui/core/Grid'
-
-import GitHubIcon from '@material-ui/icons/GitHub'
-import LinkedInIcon from '@material-ui/icons/LinkedIn'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
+import Image from '../components/StaticQuery'
 
 const useStyles = makeStyles(theme => ({
-  linkButton: {
-    color: theme.palette.grey.A700
+  root: {
+    flexGrow: 1,
   },
-}))
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
 
-
-function History() {
+export default function CenteredGrid() {
   const classes = useStyles();
 
   return (
-    <Box component='footer' marginTop={5}>
-      <Divider />
-      <Grid container spacing={2} justify='center'>
-        <Grid item>
-          <Button
-            variant='link'
-            color='default'
-            size='large'
-            startIcon={<GitHubIcon />}
-            href="https://github.com/matttan90/"
-            className={classes.linkButton}
-          >
-            Github
-          </Button>
+    <Container maxWidth='md'>
+      <div className={classes.root}>
+        <Grid container spacing={3} maxWidth='xl'>
+          <Grid item xs={12} md={5}>
+            <Paper className={classes.paper}>xs=12, md=5</Paper>
+          </Grid>
+          <Grid item xs={12} md={7}>
+            <Paper className={classes.paper}>xs=12, md=7</Paper>
+          </Grid>
+          <Grid item xs={12} md={5}>
+            <Image filename="deliveroo.png" />
+          </Grid>
+          <Grid item xs={12} md={7}>
+            <Paper className={classes.paper}>Something About Deliveroo</Paper>
+          </Grid>
+          <Grid item xs={12} md={5}>
+            <Image filename="worldremit.png" />
+          </Grid>
+          <Grid item xs={12} md={7}>
+            <Paper className={classes.paper}>Something About Worldremit</Paper>
+          </Grid>
+          <Grid item xs={12} md={5}>
+            <Image filename="rollsroyce.png" />
+          </Grid>
+          <Grid item xs={12} md={7}>
+            <Paper className={classes.paper}>Something About RollsRoyce</Paper>
+          </Grid>
+          <Grid item xs={12} md={5}>
+            <Image filename="imperial.png" />
+          </Grid>
+          <Grid item xs={12} md={7}>
+            <Paper className={classes.paper}>Something About Imperial</Paper>
+          </Grid>
+          <Grid item xs={12} md={5}>
+            <Image filename="innovia.png" />
+          </Grid>
+          <Grid item xs={12} md={7}>
+            <Paper className={classes.paper}>Something About Innovia</Paper>
+          </Grid>
         </Grid>
-        <Grid item>
-          <Button
-            variant='link'
-            color='default'
-            size='large'
-            startIcon={<LinkedInIcon />}
-            href='https://www.linkedin.com/in/matthew-tan-98713077/'
-            className={classes.linkButton}
-          >
-            LinkedIn
-          </Button>
-        </Grid>
-      </Grid>
-      <Divider />
-      <Typography variant='subtitle1' align='center' color='textSecondary' component='p'>
-        thanks for visiting!
-      </Typography>
-    </Box >
-  )
+      </div>
+    </Container>
+  );
 }
-
-export default History

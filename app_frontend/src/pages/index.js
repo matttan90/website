@@ -3,7 +3,7 @@ import React from 'react'
 import SEO from '../components/SEO'
 import Layout from '../layouts/layout'
 import Image from '../components/StaticQuery'
-import History from '../components/History'
+import CenteredGrid from '../components/History'
 
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -21,8 +21,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 import Link from '@material-ui/core/Link';
-import { Divider } from '@material-ui/core';
-import scrollTo from 'gatsby-plugin-smoothscroll';
 
 
 
@@ -98,13 +96,27 @@ function AboutMePage() {
           <Box marginTop={2} />
           <Image filename="matt.png" />
         </Container>
+        <Typography variant='body1' align='center' paragraph={true}>
+          About me WIP
+        </Typography>
       </Section>
 
       <Section id='journey'>
-        <Typography>Journey Start</Typography>
-        <Typography>Journey Mid</Typography>
-        <History />
-        <Typography>Journey End</Typography>
+        <Typography variant='h4' align='center' >My Journey</Typography>
+        <Typography align='center'>Journey WIP</Typography>
+        <CenteredGrid/>
+      </Section>
+
+      <Section id='underthehood'>
+        <Typography variant='h4' align='center' >Under The Hood</Typography>
+        <Typography align='center'>Under The Hood WIP</Typography>
+        <Box marginTop={50} />
+      </Section>
+
+      <Section id='connect'>
+        <Typography variant='h4' align='center' >Connect</Typography>
+        <Typography align='center'>Connect WIP</Typography>
+        <Box marginTop={50} />
       </Section>
 
 

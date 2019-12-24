@@ -22,8 +22,11 @@ import Divider from '@material-ui/core/Divider'
 import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import HomeIcon from '@material-ui/icons/Home'
+import AddIcon from '@material-ui/icons/Add';
 import ListIcon from '@material-ui/icons/ViewList'
+import CategoryIcon from '@material-ui/icons/Category';
+import PersonIcon from '@material-ui/icons/Person';
+import TimelineIcon from '@material-ui/icons/Timeline';
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import GitHubIcon from '@material-ui/icons/GitHub'
 
@@ -162,8 +165,8 @@ function Header({ siteTitle }) {
                 setDrawerClose();
               }}
             >
-              <ListItemIcon><HomeIcon /></ListItemIcon>
-              <ListItemText primary='Matt' />
+              <ListItemIcon><PersonIcon /></ListItemIcon>
+              <ListItemText primary='About Me' />
             </ListItem>
 
             <ListItem button
@@ -173,19 +176,30 @@ function Header({ siteTitle }) {
                 setDrawerClose();
               }}
             >
-              <ListItemIcon><ListIcon /></ListItemIcon>
+              <ListItemIcon><TimelineIcon /></ListItemIcon>
               <ListItemText primary='My Journey' />
             </ListItem>
 
             <ListItem button
               className={classes.listItemLink}
               onClick={() => {
-                scrollTo('#someid');
+                scrollTo('#underthehood');
                 setDrawerClose();
               }}
             >
-              <ListItemIcon><ListIcon /></ListItemIcon>
-              <ListItemText primary='testbelow' />
+              <ListItemIcon><CategoryIcon /></ListItemIcon>
+              <ListItemText primary='Under the Hood' />
+            </ListItem>
+
+            <ListItem button
+              className={classes.listItemLink}
+              onClick={() => {
+                scrollTo('#connect');
+                setDrawerClose();
+              }}
+            >
+              <ListItemIcon><AddIcon /></ListItemIcon>
+              <ListItemText primary='Connect' />
             </ListItem>
 
             <ListItem button
