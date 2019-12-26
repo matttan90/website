@@ -39,7 +39,7 @@ const Layout = ({ children }) => {
       render={data => (
         <React.Fragment>
           <Header siteTitle={data.site.siteMetadata.title} />
-          <Container component='main' maxWidth='lg' className={classes.main}>
+          <Container component='main' maxWidth='md' className={classes.main}>
             {children}
           </Container>
           <Footer />

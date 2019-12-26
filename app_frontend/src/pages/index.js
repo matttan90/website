@@ -3,8 +3,7 @@ import React from 'react'
 import SEO from '../components/SEO'
 import Layout from '../layouts/layout'
 import Image from '../components/StaticQuery'
-import CenteredGrid from '../components/History'
-
+import JourneyCard from '../components/JourneyCard'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box'
@@ -17,66 +16,39 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 import Link from '@material-ui/core/Link';
+import IconButton from '@material-ui/core/IconButton'
+import Divider from '@material-ui/core/Divider'
 
 
 
-// section requires paddingtop to avoid fixed bar from ccovering it.
 const useStyles = makeStyles(theme => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4),
-  },
   section: {
+    // marginTop and paddingTop offsets scrolling to anchortag to avoid appbar
     marginTop: -theme.spacing(10),
     paddingTop: theme.spacing(10),
     marginBottom: theme.spacing(4)
   },
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-  },
-  card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '56.25%', // 16:9
-  },
-  cardMedia2: {
-    paddingTop: '56.25%', // 16:9
-    paddingBottom: '12%', // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
+  sectionTitle: {
+    marginBottom: theme.spacing(4)
   },
 }));
 
-const cards = [[1, "https://source.unsplash.com/random"],
-[2, "https://source.unsplash.com/random"],
-[3, "https://source.unsplash.com/random"]];
-// const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 function Section(props) {
-  const { id, children } = props;
+  const { id, children, sectionTitle } = props;
   const classes = useStyles();
   return (
     <React.Fragment>
       <Box id={id} component='section' className={classes.section}>
+        <Typography
+          variant='h4'
+          align='center'
+          className={classes.sectionTitle}>
+          {sectionTitle}
+        </Typography>
         {children}
       </Box>
     </React.Fragment>
@@ -85,20 +57,123 @@ function Section(props) {
 
 
 function AboutMePage() {
-  const classes = useStyles();
   return (
     <Layout>
       <SEO title='About Me' />
 
-      <Section id='aboutme'>
+      <Section id='aboutme' sectionTitle='About Me'>
         <Container maxWidth='xs'>
-          <Typography variant="h4" align="center" >About Me</Typography>
           <Box marginTop={2} />
           <Image filename="matt.png" />
         </Container>
-        <Typography variant='body1' align='center' paragraph={true}>
+        <Typography variant='body1' align='center'>
           About me WIP
         </Typography>
+      </Section>
+
+      <Section id='journey' sectionTitle='My Journey'>
+        <Grid container direction='column' spacing={3}>
+          <Grid item>
+            <JourneyCard
+              imageFilename='deliveroo.png'
+              location='Deliveroo, London, UK'
+              title='Algorithms Data Scientist'
+              timePeriod='August 2019 - Present'
+              content=
+              'I am part of the Network Supply Algorithms team of data scientists and engineers.
+              Our goal is to ensure optimal rider supply for every zone at any point in time.
+            My involvements include designing forecasting models and architecting a modular
+            system to integrate with the current system.'
+        />
+          </Grid>
+
+          <Grid item>
+            <JourneyCard
+              imageFilename='worldremit.png'
+              location='WorldRemit, London, UK'
+              title='Machine Learning Engineer'
+              timePeriod='March 2019 - July 2019'
+              content=
+              'I am part of the Network Supply Algorithms team of data scientists and engineers.
+              Our goal is to ensure optimal rider supply for every zone at any point in time.
+            My involvements include designing forecasting models and architecting a modular
+            system to integrate with the current system.'
+          />
+          </Grid>
+
+          <Grid item>
+            <JourneyCard
+              imageFilename='rollsroyce.png'
+              location='Rolls-Royce Plc, Midlands, UK'
+              title='Manufacturing Engineer'
+              timePeriod='September 2014 - February 2018'
+              content=
+              "I learnt my craft as a manufacturing engineer across multiple technical
+              disciplines at Rolls-Royce's manufacturing offices and factories. I eventually
+            specialized in metal additive layer manufacturing whereby I was running finite
+            element analysis (FEA) simulations to optimise printing orientations and support
+            structures. The aim was to reduce thermal residual stresses, reduce component
+            distortion and to develop a repeatable, cost-efficient manufacturing process."
+          />
+          </Grid>
+
+          <Grid item>
+            <JourneyCard
+              imageFilename='imperial.png'
+              location='Imperial College London, London, UK'
+              title='Mechanical Engineering'
+              timePeriod='October 2010 - July 2014'
+              content=
+              'I am part of the Network Supply Algorithms team of data scientists and engineers.
+              Our goal is to ensure optimal rider supply for every zone at any point in time.
+            My involvements include designing forecasting models and architecting a modular
+            system to integrate with the current system.'
+          />
+          </Grid>
+
+          <Grid item>
+            <JourneyCard
+              imageFilename='innovia.png'
+              location='Innovia Technology, Cambridge, UK'
+              title='Intern'
+              timePeriod='Summer 2013'
+              content=
+              'I am part of the Network Supply Algorithms team of data scientists and engineers.
+              Our goal is to ensure optimal rider supply for every zone at any point in time.
+            My involvements include designing forecasting models and architecting a modular
+            system to integrate with the current system.'
+          />
+          </Grid>
+        </Grid>
+      </Section>
+
+      <Section id='underthehood' sectionTitle='Under The Hood'>
+        <Typography align='center'>Under The Hood WIP</Typography>
+        <Box marginTop={50} />
+      </Section>
+
+      <Section id='connect' sectionTitle='Connect'>
+        <Typography align='center'>Under The Hood WIP</Typography>
+        <Grid container maxWidth='md' justify='center'>
+          <Grid item xs={2} align='center'>
+            <Link component='a' target="_blank" href="https://www.facebook.com/matthew.tan.334/">
+              <Image filename='facebook.png' style={{ maxWidth: 60 }} />
+            </Link>
+          </Grid>
+          <Grid item xs={2} align='center'>
+            <Link component='a' target="_blank" href="https://www.linkedin.com/in/matthew-tan-98713077/">
+              <Image filename='linkedin.png' style={{ maxWidth: 60 }} />
+            </Link>
+          </Grid>
+          <Grid item xs={2} align='center'>
+            <Link component='a' target="_blank" href="https://github.com/matttan90/">
+              <Image filename='github.png' style={{ maxWidth: 60 }} />
+            </Link>
+          </Grid>
+        </Grid>
+      </Section>
+
+      <Section id='typography' sectionTitle='Typography'>
         <Typography variant='h1' align='center'>h1</Typography>
         <Typography variant='h2' align='center'>h2</Typography>
         <Typography variant='h3' align='center'>h3</Typography>
@@ -114,132 +189,9 @@ function AboutMePage() {
         <Typography variant='overline' align='center'>overline</Typography>
         <Typography variant='srOnly' align='center'>srOnly</Typography>
         <Typography variant='inherit' align='center'>inherit</Typography>
-
       </Section>
 
-      <Section id='journey'>
-        <Typography variant='h4' align='center' >My Journey</Typography>
-        <Typography align='center'>Journey WIP</Typography>
-        <CenteredGrid />
-      </Section>
-
-      <Section id='underthehood'>
-        <Typography variant='h4' align='center' >Under The Hood</Typography>
-        <Typography align='center'>Under The Hood WIP</Typography>
-        <Box marginTop={50} />
-      </Section>
-
-      <Section id='connect'>
-        <Typography variant='h4' align='center' >Connect</Typography>
-        <Typography align='center'>Connect WIP</Typography>
-        <Box marginTop={50} />
-      </Section>
-
-
-
-
-      <Container className={classes.cardGrid} maxWidth="md">
-        <Grid container spacing={4}>
-          <Grid item key={1} xs={12} sm={6} md={4}>
-            <Card className={classes.card}>
-              {/* <CardMedia className={classes.cardMedia}> */}
-              <Image filename="matt.png" />
-              {/* </ CardMedia > */}
-
-              <CardContent className={classes.cardContent}>
-                <Typography gutterBottom variant="h5" component="h2">
-                  Heading
-                    </Typography>
-                <Typography>
-                  This is a media card. You can use this section to describe the content.
-                    </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-
-
-          {cards.map(card => (
-            <Grid item key={card[0]} xs={12} sm={6} md={4}>
-              <Card className={classes.card}>
-                <CardMedia
-                  className={classes.cardMedia2}
-                  image={card[1]}
-                  title="Image title"
-                />
-                <CardContent className={classes.cardContent}>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    Heading
-                    </Typography>
-                  <Typography>
-                    This is a media card. You can use this section to describe the content.
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button size="small" color="primary">
-                    View
-                    </Button>
-                  <Button size="small" color="primary">
-                    Edit
-                    </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-
-        </Grid>
-
-      </Container>
-
-      <Container maxWidth='xs'>
-        <Typography variant="h4" align="center" >About Me</Typography>
-        <Box marginTop={2} />
-        <Image filename="matt.png" />
-      </Container>
-
-
-      <Container maxWidth='xs'>
-        <Typography variant="h4" align="center" >About Me</Typography>
-        <Box marginTop={2} />
-        <Image filename="matt.png" />
-      </Container>
-
-      <Container maxWidth='xs'>
-        <Typography variant="h4" align="center" >About Me</Typography>
-        <Box marginTop={2} />
-        <Image filename="matt.png" />
-      </Container>
-
-      <Container id='someid' maxWidth='xs'>
-        <Typography variant="h4" align="center" >Real Test</Typography>
-        <Box marginTop={2} />
-        <Image filename="matt.png" />
-      </Container>
-
-
-      <Container maxWidth='xs'>
-        <Typography variant="h4" align="center" >About Me</Typography>
-        <Box marginTop={2} />
-        <Image filename="matt.png" />
-      </Container>
-
-
-      <Container maxWidth='xs'>
-        <Typography variant="h4" align="center" >About Me</Typography>
-        <Box marginTop={2} />
-        <Image filename="matt.png" />
-      </Container>
-
-
-      <Container maxWidth='xs'>
-        <Typography variant="h4" align="center" >About Me</Typography>
-        <Box marginTop={2} />
-        <Image filename="matt.png" />
-      </Container>
-
-
-
-    </Layout>
+    </Layout >
   )
 }
 export default AboutMePage
