@@ -99,12 +99,28 @@ function AboutMePage() {
         <Typography variant='body1' align='center' paragraph={true}>
           About me WIP
         </Typography>
+        <Typography variant='h1' align='center'>h1</Typography>
+        <Typography variant='h2' align='center'>h2</Typography>
+        <Typography variant='h3' align='center'>h3</Typography>
+        <Typography variant='h4' align='center'>h4</Typography>
+        <Typography variant='h5' align='center'>h5</Typography>
+        <Typography variant='h6' align='center'>h6</Typography>
+        <Typography variant='subtitle1' align='center'>subtitle1</Typography>
+        <Typography variant='subtitle2' align='center'>subtitle2</Typography>
+        <Typography variant='body1' align='center'>body1</Typography>
+        <Typography variant='body2' align='center'>body2</Typography>
+        <Typography variant='caption' align='center'>caption</Typography>
+        <Typography variant='button' align='center'>button</Typography>
+        <Typography variant='overline' align='center'>overline</Typography>
+        <Typography variant='srOnly' align='center'>srOnly</Typography>
+        <Typography variant='inherit' align='center'>inherit</Typography>
+
       </Section>
 
       <Section id='journey'>
         <Typography variant='h4' align='center' >My Journey</Typography>
         <Typography align='center'>Journey WIP</Typography>
-        <CenteredGrid/>
+        <CenteredGrid />
       </Section>
 
       <Section id='underthehood'>
