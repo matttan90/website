@@ -154,18 +154,18 @@ function AboutMePage() {
 
       <Section id='connect' sectionTitle='Connect'>
         <Typography align='center'>Under The Hood WIP</Typography>
-        <Grid container maxWidth='md' justify='center'>
-          <Grid item xs={2} align='center'>
+        <Grid container spacing={1} maxWidth='md' justify='center'>
+          <Grid item xs={3} md={2} align='center'>
             <Link component='a' target="_blank" href="https://www.facebook.com/matthew.tan.334/">
               <Image filename='facebook.png' style={{ maxWidth: 60 }} />
             </Link>
           </Grid>
-          <Grid item xs={2} align='center'>
+          <Grid item xs={3} md={2} align='center'>
             <Link component='a' target="_blank" href="https://www.linkedin.com/in/matthew-tan-98713077/">
               <Image filename='linkedin.png' style={{ maxWidth: 60 }} />
             </Link>
           </Grid>
-          <Grid item xs={2} align='center'>
+          <Grid item xs={3} md={2} align='center'>
             <Link component='a' target="_blank" href="https://github.com/matttan90/">
               <Image filename='github.png' style={{ maxWidth: 60 }} />
             </Link>
