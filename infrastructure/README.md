@@ -6,6 +6,10 @@ This sub-repository declares the infrastructure used to host the production infr
 - `k8s`, the kubernetes service deployments (frontend and backend)
 - `dns`, the google cloud dns records to resolve domain name to external static-ip
 
+## Architecture
+
+![infrastructure-diagram](../app_frontend/src/images/infrastructure.png)
+
 ---
 # Prerequisites
 
