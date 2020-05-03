@@ -19,16 +19,17 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 
-import MenuIcon from '@material-ui/icons/Menu'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import AddIcon from '@material-ui/icons/Add';
-import ListIcon from '@material-ui/icons/ViewList'
+import ListIcon from '@material-ui/icons/ViewList';
 import CategoryIcon from '@material-ui/icons/Category';
+import AccountTreeIcon from '@material-ui/icons/AccountTree';
 import PersonIcon from '@material-ui/icons/Person';
 import TimelineIcon from '@material-ui/icons/Timeline';
-import LinkedInIcon from '@material-ui/icons/LinkedIn'
-import GitHubIcon from '@material-ui/icons/GitHub'
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 const drawerWidth = 240
 const useStyles = makeStyles(theme => ({
@@ -130,7 +131,7 @@ function Header({ siteTitle }) {
               <MenuIcon />
             </IconButton>
             <Typography className={classes.appBarText} variant='h5'>
-              i'm {siteTitle}
+              {siteTitle}
             </Typography>
           </Toolbar>
           <Divider />
@@ -187,8 +188,19 @@ function Header({ siteTitle }) {
                 setDrawerClose();
               }}
             >
-              <ListItemIcon><CategoryIcon /></ListItemIcon>
+              <ListItemIcon><AccountTreeIcon /></ListItemIcon>
               <ListItemText primary='Under the Hood' />
+            </ListItem>
+
+            <ListItem button
+              className={classes.listItemLink}
+              onClick={() => {
+                scrollTo('#futureprojects');
+                setDrawerClose();
+              }}
+            >
+              <ListItemIcon><CategoryIcon /></ListItemIcon>
+              <ListItemText primary='Future ML Projects' />
             </ListItem>
 
             <ListItem button

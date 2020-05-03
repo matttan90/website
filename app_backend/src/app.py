@@ -1,6 +1,7 @@
 import datetime as dt
 import logging
 from flask import Flask, request, jsonify
+
 app = Flask(__name__)
 app.logger.setLevel(logging.INFO)
 
@@ -11,8 +12,7 @@ def comment():
     app.logger.info(f"Text is: {req_data['text']}")
 
     resp = {
-        "name": "Matt",
-        "age": 29,
+        "name": "Matthew Tan",
         "time": str(dt.datetime.now().time())
     }
     
